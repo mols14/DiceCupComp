@@ -14,7 +14,10 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    private val HISTORY_NAME = "history"
+
     private val TAG: String = "xyz"
+
     // mapping from 1..6 to drawables, the first index is unused
     private val diceId = intArrayOf(0, R.drawable.dice1,
                                R.drawable.dice2,
@@ -27,6 +30,8 @@ class MainActivity : AppCompatActivity() {
 
     private val mHistory = mutableListOf<Pair<Int, Int>>()
 
+    private val mT = Texts()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,18 +40,19 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "OnCreate")
 
         //<editor-fold desc="Restore history">
-        //        val orientation = this.getResources().getConfiguration().orientation
-//        val message = if (orientation == Configuration.ORIENTATION_PORTRAIT) "Portrait" else "Landscape"
-//        Toast.makeText(this,message, Toast.LENGTH_LONG).show()
+        val orientation = this.getResources().getConfiguration().orientation
+        val message = if (orientation == Configuration.ORIENTATION_PORTRAIT) "Portrait" else "Landscape"
+        Toast.makeText(this,message, Toast.LENGTH_LONG).show()
 
-//        if (savedInstanceState != null)
-//        {
-//            Log.d(TAG, "saved state NOT null")
-//            val history = savedInstanceState.getSerializable("history") as Array<Pair<Int,Int>>
-//            history.forEach { p -> mHistory.add(p) }
-//            updateHistory()
-//            updateDicesWith(mHistory[mHistory.size-1])
-//        }
+        if (savedInstanceState != null)
+        {
+              Log.d(TAG, "saved state NOT null")
+              val history = savedInstanceState.getSerializable(HISTORY_NAME) as Array<Pair<Int,Int>>
+              history.forEach { p -> mHistory.add(p) }
+              updateHistory()
+              if (mHistory.size > 0)
+                  updateDicesWith(mHistory[mHistory.size-1])
+        }
         //</editor-fold>
     }
 
@@ -83,12 +89,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     //<editor-fold desc="onSaveInstanceState">
-    //    override fun onSaveInstanceState(outState: Bundle) {
-//        super.onSaveInstanceState(outState)
-//        Log.d(TAG, "History saved")
-//        val output = mHistory.toTypedArray()
-//        outState.putSerializable("history", output)
-//    }
+    override fun onSaveInstanceState(outState: Bundle) {
+       super.onSaveInstanceState(outState)
+        Log.d(TAG, "History saved")
+
+        outState.putSerializable(HISTORY_NAME, mHistory.toTypedArray())
+     }
     //</editor-fold>
 
 }

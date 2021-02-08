@@ -59,8 +59,8 @@
         android:id="@+id/tvHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/btnRoll"/>
+        android:layout_below="@+id/tvHeader"
+        android:layout_toRightOf="@+id/layoutDices"/>
 
     <Button
         android:id="@+id/btnClear"
