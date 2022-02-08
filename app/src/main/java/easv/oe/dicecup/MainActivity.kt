@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -36,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         btnRoll.setOnClickListener { v -> onClickRoll() }
-        btnClear.setOnClickListener { v -> onClickClear() }
         Log.d(TAG, "OnCreate")
 
         //<editor-fold desc="Restore history">
@@ -47,13 +47,14 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState != null)
         {
               Log.d(TAG, "saved state NOT null")
-              val history = savedInstanceState.getSerializable(HISTORY_NAME) as Array<Pair<Int,Int>>
+              val history = savedInstanceState.getSerializable("HISTORY") as Array<Pair<Int,Int>>
               history.forEach { p -> mHistory.add(p) }
               updateHistory()
               if (mHistory.size > 0)
-                  updateDicesWith(mHistory[mHistory.size-1])
+              {
+                  updateDicesWith(mHistory[mHistory.size - 1])
+              }
         }
-        //</editor-fold>
     }
 
     private fun onClickRoll(){
@@ -91,10 +92,10 @@ class MainActivity : AppCompatActivity() {
     //<editor-fold desc="onSaveInstanceState">
     override fun onSaveInstanceState(outState: Bundle) {
        super.onSaveInstanceState(outState)
-        Log.d(TAG, "History saved")
-
-        outState.putSerializable(HISTORY_NAME, mHistory.toTypedArray())
+        outState.putSerializable("HISTORY", mHistory.toTypedArray())
      }
-    //</editor-fold>
+
+    fun btnAddDie(view: View) {}
+    fun btnRemoveDie(view: View) {}
 
 }

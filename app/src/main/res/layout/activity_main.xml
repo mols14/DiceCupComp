@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
@@ -14,20 +13,18 @@
         android:layout_height="wrap_content"
         android:text= "Dicecup - portrait"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-        android:textSize="25dp"
-        android:textStyle="bold"/>
+        android:textSize="35dp"
+        android:textStyle="bold"
+        />
 
     <LinearLayout
         android:id="@+id/layoutDices"
-        android:layout_width="360dp"
-        android:layout_height="200dp"
-        android:layout_below="@+id/tvHeader"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="332dp"
-        android:background="@color/diceboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:visibility="visible">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tvHeader"
+        android:background="@color/diceboard">
 
         <ImageView
             android:id="@+id/imgDice1"
@@ -37,78 +34,57 @@
             android:adjustViewBounds="true"
             android:maxWidth="100dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/dice1" />
+            android:src="@drawable/dice1"
+            />
 
         <ImageView
             android:id="@+id/imgDice2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/dice1"
             android:layout_margin="30dp"
-            android:adjustViewBounds="true"
             android:maxWidth="100dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/dice1" />
+            android:adjustViewBounds ="true"/>
 
     </LinearLayout>
-
     <LinearLayout
-        android:id="@+id/layoutDices2"
-        android:layout_width="360"
-        android:layout_height="200"
-        android:layout_below="@id/tvHeader"
-        android:background="@color/diceboard"
-        android:orientation="horizontal">
+        android:id="@+id/DieSelection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/layoutDices"
+        android:padding="10dp"
+        >
 
-        <ImageView
-            android:id="@+id/imgDice3"
-            android:layout_width="176dp"
-            android:layout_height="141dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:visibility="visible" />
-
-        <ImageView
-            android:id="@+id/imgDice4"
+        <Button
+            android:id="@+id/btnRemoveDie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:maxWidth="100dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/dice1" />
-    </LinearLayout>
+            android:layout_marginHorizontal="5dp"
+            android:text="-"
+            android:layout_centerHorizontal="true"
+            android:onClick="btnRemoveDie"
+            />
 
-    <LinearLayout
-        android:id="@+id/layoutDices3"
-        android:layout_width="360dp"
-        android:layout_height="200dp"
-        android:layout_below="@id/tvHeader"
-        android:layout_marginTop="167dp"
-        android:background="@color/diceboard"
-        android:orientation="horizontal">
+        <Button
+        android:id="@+id/btnRoll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"
+        android:text="Roll"
+        android:layout_centerHorizontal="true"
+             />
 
-        <ImageView
-            android:id="@+id/imgDice6"
+        <Button
+            android:id="@+id/btnAddDie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:maxWidth="100dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/dice1" />
-
-        <ImageView
-            android:id="@+id/imgDice5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:maxWidth="100dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/dice1" />
+            android:layout_marginHorizontal="5dp"
+            android:text="+"
+            android:layout_centerHorizontal="true"
+            android:onClick="btnAddDie"
+            />
     </LinearLayout>
 
     <TextView
@@ -116,23 +92,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/btnRoll"/>
+        android:layout_below="@+id/DieSelection" />
 
-    <Button
-        android:id="@+id/btnClear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Clear" />
-
-    <Button
-        android:id="@+id/btnRoll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layoutDices"
-        android:layout_marginTop="42dp"
-        android:text="Roll" />
 
 
 </RelativeLayout>
