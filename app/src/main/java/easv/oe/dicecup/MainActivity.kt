@@ -95,7 +95,12 @@ class MainActivity : AppCompatActivity() {
         outState.putSerializable("HISTORY", mHistory.toTypedArray())
      }
 
-    fun btnAddDie(view: View) {}
-    fun btnRemoveDie(view: View) {}
+    fun btnAddDie(view: View) {
+
+    }
+
+    fun btnRemoveDie(view: View) {
+
+    }
 
 }
