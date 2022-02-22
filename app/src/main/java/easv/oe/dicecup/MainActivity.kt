@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     private val TAG: String = "xyz"
 
+    private var NoOfDice: Int = 2
+
     // mapping from 1..6 to drawables, the first index is unused
     private val diceId = intArrayOf(0, R.drawable.dice1,
                                R.drawable.dice2,
@@ -96,7 +98,9 @@ class MainActivity : AppCompatActivity() {
      }
 
     fun btnAddDie(view: View) {
-
+        for(int i = NoOfDice; NoOfDice < 7; NoOfDice++){
+            layoutDices.addChildrenForAccessibility()
+        }
     }
 
     fun btnRemoveDie(view: View) {
