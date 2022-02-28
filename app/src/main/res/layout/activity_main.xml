@@ -25,6 +25,11 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/tvHeader"
         android:background="@color/diceboard">
+        <LinearLayout android:id="@+id/dis2" android:layout_width="10dp" android:layout_marginLeft="150dp" android:layout_height="match_parent" android:orientation="vertical"/>
+        <LinearLayout android:id="@+id/dis3" android:layout_width="10dp" android:layout_height="match_parent" android:orientation="vertical"/>
+        <LinearLayout android:id="@+id/dis4" android:layout_width="10dp" android:layout_height="match_parent" android:orientation="vertical"/>
+        <LinearLayout android:id="@+id/dis5" android:layout_width="10dp" android:layout_height="match_parent" android:orientation="vertical"/>
+        <LinearLayout android:id="@+id/dis6" android:layout_width="10dp" android:layout_height="match_parent" android:orientation="vertical"/>
 
         <ImageView
             android:id="@+id/imgDice1"
@@ -46,6 +51,7 @@
             android:maxWidth="100dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds ="true"/>
+
 
     </LinearLayout>
     <LinearLayout
@@ -85,6 +91,7 @@
             android:layout_centerHorizontal="true"
             android:onClick="btnAddDie"
             />
+
     </LinearLayout>
 
     <TextView

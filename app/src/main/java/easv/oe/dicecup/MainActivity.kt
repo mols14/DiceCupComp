@@ -1,25 +1,21 @@
 package easv.oe.dicecup
 
-import android.app.Activity
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val HISTORY_NAME = "history"
+    var dieNo = 2;
+    var mHistory = DiceHistory()
+//    var diceDrawer = DrawDice(mHistory)
 
-    private val TAG: String = "xyz"
-
-    private var NoOfDice: Int = 2
 
     // mapping from 1..6 to drawables, the first index is unused
     private val diceId = intArrayOf(0, R.drawable.dice1,
@@ -31,9 +27,6 @@ class MainActivity : AppCompatActivity() {
 
     private val mRandomGenerator = Random()
 
-    private val mHistory = mutableListOf<Pair<Int, Int>>()
-
-    private val mT = Texts()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         btnRoll.setOnClickListener { v -> onClickRoll() }
         Log.d(TAG, "OnCreate")
 
-        //<editor-fold desc="Restore history">
         val orientation = this.getResources().getConfiguration().orientation
         val message = if (orientation == Configuration.ORIENTATION_PORTRAIT) "Portrait" else "Landscape"
         Toast.makeText(this,message, Toast.LENGTH_LONG).show()
@@ -49,27 +41,28 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState != null)
         {
               Log.d(TAG, "saved state NOT null")
-              val history = savedInstanceState.getSerializable("HISTORY") as Array<Pair<Int,Int>>
-              history.forEach { p -> mHistory.add(p) }
+              val history = savedInstanceState.getSerializable("HISTORY") as DiceHistory
+              mHistory = history
               updateHistory()
-              if (mHistory.size > 0)
-              {
-                  updateDicesWith(mHistory[mHistory.size - 1])
-              }
+//              if (mHistory.size > 0)
+//              {
+//                  updateDicesWith(mHistory[mHistory.size - 1])
+//              }
         }
     }
 
     private fun onClickRoll(){
         val e1 = mRandomGenerator.nextInt(6) + 1
         val e2 = mRandomGenerator.nextInt(6) + 1
-        val p = Pair(e1,e2)
-        //update history
-        mHistory.add(p)
-
-        // set dices
-        updateDicesWith(p)
-        if (mHistory.size > 5) mHistory.removeAt(0)
+        val p = String
         updateHistory()
+        mHistory.addEntry(p)
+
+        updateDicesWith(p)
+        if (mHistory.size > 5) {
+            mHistory.remove()
+            updateHistory()
+        }
         Log.d(TAG, "Roll")
     }
 
@@ -86,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         tvHistory.text = s
     }
 
-    private fun updateDicesWith(p: Pair<Int, Int>) {
+    private fun updateDicesWith(p: String) {
         imgDice1.setImageResource( diceId[p.first] )
         imgDice2.setImageResource( diceId[p.second] )
     }
@@ -98,8 +91,12 @@ class MainActivity : AppCompatActivity() {
      }
 
     fun btnAddDie(view: View) {
-        for(int i = NoOfDice; NoOfDice < 7; NoOfDice++){
-            layoutDices.addChildrenForAccessibility()
+        val imageView = ImageView(this)
+        imageView.layoutParams = layoutDices.layoutParams
+        var resId = R.drawable.hex
+        imageView.setImageResource(resId)
+        when (doubleCount) {
+            2 -> dis2.addView(imageView)
         }
     }
 
