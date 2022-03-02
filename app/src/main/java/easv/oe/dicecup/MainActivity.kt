@@ -16,8 +16,8 @@ import android.widget.TextView
 class MainActivity : AppCompatActivity() {
 
     var dieNo = 2;
-    val mHistory = DiceHistory()
 
+    val mHistory = HistoryActivity()
 
     // mapping from 1..6 to drawables, the first index is unused
     private val diceId = intArrayOf(0, R.drawable.dice1,
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState != null)
         {
               Log.d(TAG, "saved state NOT null")
-              val history = savedInstanceState.getSerializable("HISTORY") as DiceHistory
+//              val history = savedInstanceState.getSerializable("HISTORY") as DiceHistory
               //kopier...
 //              if (mHistory.size > 0)
 //              {
@@ -85,8 +85,6 @@ class MainActivity : AppCompatActivity() {
             val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
             lp.setMargins(20, 20, 20, 20)
             imageView.layoutParams = lp
-            //imageView.layoutParams = layoutDices.layoutParams
-            //imageView.maxWidth = 10
             imageView.setImageResource(diceId[eyes[idx]])
             layoutDices.addView(imageView)
         }
