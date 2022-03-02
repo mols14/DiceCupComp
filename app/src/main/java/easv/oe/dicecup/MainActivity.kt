@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
             imageView.adjustViewBounds = true
             imageView.scaleType = ImageView.ScaleType.FIT_CENTER
             val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-            lp.setMargins(20, 20, 20, 20)
+            lp.setMargins(10, 10, 10, 10)
             imageView.layoutParams = lp
             imageView.setImageResource(diceId[eyes[idx]])
             layoutDices.addView(imageView)
