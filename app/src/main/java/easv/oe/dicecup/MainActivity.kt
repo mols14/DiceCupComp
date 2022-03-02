@@ -39,16 +39,16 @@ class MainActivity : AppCompatActivity() {
         val message = if (orientation == Configuration.ORIENTATION_PORTRAIT) "Portrait" else "Landscape"
         Toast.makeText(this,message, Toast.LENGTH_LONG).show()
 
-        if (savedInstanceState != null)
-        {
-              Log.d(TAG, "saved state NOT null")
-//              val history = savedInstanceState.getSerializable("HISTORY") as DiceHistory
+        //if (savedInstanceState != null)
+        //{
+          //    Log.d(TAG, "saved state NOT null")
+            //  val history = savedInstanceState.getSerializable("HISTORY") as DiceHistory
               //kopier...
-//              if (mHistory.size > 0)
-//              {
-//                  updateDicesWith(mHistory[mHistory.size - 1])
-//              }
-        }
+              //if (mHistory.size > 0)
+              //{
+              //    updateDicesWith(mHistory[mHistory.size - 1])
+              //}
+        //}
 
         showDices(intArrayOf(2,3))
     }
@@ -69,10 +69,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    override fun onSaveInstanceState(outState: Bundle) {
-       super.onSaveInstanceState(outState)
-        outState.putSerializable("HISTORY", mHistory)
-     }
+    //override fun onSaveInstanceState(outState: Bundle) {
+    //   super.onSaveInstanceState(outState)
+    //    outState.putSerializable("HISTORY", mHistory)
+    // }
 
     fun showDices(eyes: IntArray) {
         val layoutDices = findViewById<LinearLayout>(R.id.layoutDices)
@@ -100,8 +100,9 @@ class MainActivity : AppCompatActivity() {
         showDices((1..dieNo).toList().toIntArray())}
 
     fun onClickHistory(view: View) {
-        val intent = Intent(this, HistoryActivity::class.java)
+        val intent = Intent(this, mHistory::class.java)
+        intent.putExtra("HISTORY", mHistory.getHistory())
         startActivity(intent)
-    }
 
+    }
 }
