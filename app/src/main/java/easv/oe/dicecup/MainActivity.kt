@@ -67,10 +67,7 @@ class MainActivity : AppCompatActivity() {
          tvHistory.text = p.toString()
     }
 
-    fun onClickClear() {
-        Log.d(TAG, "Clear")
-        mHistory.getList().clear()
-    }
+
 
     override fun onSaveInstanceState(outState: Bundle) {
        super.onSaveInstanceState(outState)

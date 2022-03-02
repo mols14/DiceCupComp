@@ -1,9 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp">
     tools:context=".HistoryActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tvHistoryHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dicecup - History"
+        android:layout_centerHorizontal="true"
+        android:textSize="36dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/background_dark"
+        />
+
+    <LinearLayout
+        android:id="@+id/layoutHistory"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tvHistoryHeader"
+        android:background="@color/diceboard">
+
+        <TextView
+            android:id="@+id/tvHistoryDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="30dp"
+            android:textSize="28dp"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textColor="@android:color/background_dark"
+            android:layout_centerHorizontal="true"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutHistory"
+        android:layout_alignLeft="@+id/layoutHistory"
+        android:text="Back"
+        android:onClick="onClickBack"
+        android:layout_margin="10dp"/>
+
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutHistory"
+        android:layout_centerHorizontal="true"
+        android:text="Clear"
+        android:layout_margin="10dp"
+        android:onClick="onClickClear"/>
+
+</RelativeLayout>
