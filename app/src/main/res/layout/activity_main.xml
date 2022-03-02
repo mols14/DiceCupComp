@@ -19,25 +19,20 @@
 
     <LinearLayout
         android:id="@+id/layoutDices"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/tvHeader"
         android:background="@color/diceboard">
-        <LinearLayout android:id="@+id/dis2" android:layout_width="10dp" android:layout_marginLeft="150dp" android:layout_height="match_parent" android:orientation="vertical"/>
-        <LinearLayout android:id="@+id/dis3" android:layout_width="10dp" android:layout_height="match_parent" android:orientation="vertical"/>
-        <LinearLayout android:id="@+id/dis4" android:layout_width="10dp" android:layout_height="match_parent" android:orientation="vertical"/>
-        <LinearLayout android:id="@+id/dis5" android:layout_width="10dp" android:layout_height="match_parent" android:orientation="vertical"/>
-        <LinearLayout android:id="@+id/dis6" android:layout_width="10dp" android:layout_height="match_parent" android:orientation="vertical"/>
 
         <ImageView
             android:id="@+id/imgDice1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
+            android:layout_margin="20dp"
             android:adjustViewBounds="true"
-            android:maxWidth="100dp"
+            android:maxWidth="80dp"
             android:scaleType="fitCenter"
             android:src="@drawable/dice1"
             />
@@ -47,8 +42,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/dice1"
-            android:layout_margin="30dp"
-            android:maxWidth="100dp"
+            android:layout_margin="20dp"
+            android:maxWidth="80dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds ="true"/>
 
@@ -70,7 +65,7 @@
             android:layout_marginHorizontal="5dp"
             android:text="-"
             android:layout_centerHorizontal="true"
-            android:onClick="btnRemoveDie"
+            android:onClick="onClickRemoveDie"
             />
 
         <Button
@@ -78,6 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="5dp"
+        android:onClick="onClickRoll"
         android:text="Roll"
         android:layout_centerHorizontal="true"
              />
@@ -89,7 +85,8 @@
             android:layout_marginHorizontal="5dp"
             android:text="+"
             android:layout_centerHorizontal="true"
-            android:onClick="btnAddDie"
+            android:onClick="onClickAddDie"
+
             />
 
     </LinearLayout>
@@ -102,5 +99,12 @@
         android:layout_below="@+id/DieSelection" />
 
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="History"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ></Button>
 
 </RelativeLayout>

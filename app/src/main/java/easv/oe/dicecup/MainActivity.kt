@@ -4,17 +4,19 @@ import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
+import android.content.ContentValues.TAG
+import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
     var dieNo = 2;
-    var mHistory = DiceHistory()
-//    var diceDrawer = DrawDice(mHistory)
+    val mHistory = DiceHistory()
 
 
     // mapping from 1..6 to drawables, the first index is unused
@@ -31,7 +33,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        btnRoll.setOnClickListener { v -> onClickRoll() }
         Log.d(TAG, "OnCreate")
 
         val orientation = this.getResources().getConfiguration().orientation
@@ -42,66 +43,65 @@ class MainActivity : AppCompatActivity() {
         {
               Log.d(TAG, "saved state NOT null")
               val history = savedInstanceState.getSerializable("HISTORY") as DiceHistory
-              mHistory = history
-              updateHistory()
+              //kopier...
 //              if (mHistory.size > 0)
 //              {
 //                  updateDicesWith(mHistory[mHistory.size - 1])
 //              }
         }
+
+        showDices(intArrayOf(2,3))
     }
 
-    private fun onClickRoll(){
-        val e1 = mRandomGenerator.nextInt(6) + 1
-        val e2 = mRandomGenerator.nextInt(6) + 1
-        val p = String
-        updateHistory()
-        mHistory.addEntry(p)
-
-        updateDicesWith(p)
-        if (mHistory.size > 5) {
-            mHistory.remove()
-            updateHistory()
+     fun onClickRoll(v: View){
+        val p = mutableListOf<Int>()
+        for (i in 1..dieNo){
+            val eDice = mRandomGenerator.nextInt(6)+1
+            p.add(eDice)
         }
+        val aRoll = BERoll(Date(), p.toIntArray())
+        mHistory.addEntry(aRoll)
+        showDices(p.toIntArray())
         Log.d(TAG, "Roll")
+         val tvHistory = findViewById<TextView>(R.id.tvHistory)
+         tvHistory.text = p.toString()
     }
 
-    private fun onClickClear() {
+    fun onClickClear() {
         Log.d(TAG, "Clear")
-        mHistory.clear()
-        updateHistory()
+        mHistory.getList().clear()
     }
 
-    // ensures that the history text aligns the history object
-    private fun updateHistory() {
-        var s = ""
-        mHistory.forEach { p ->  val e1 = p.first; val e2 = p.second; s += "$e1 - $e2 \n" }
-        tvHistory.text = s
-    }
-
-    private fun updateDicesWith(p: String) {
-        imgDice1.setImageResource( diceId[p.first] )
-        imgDice2.setImageResource( diceId[p.second] )
-    }
-
-    //<editor-fold desc="onSaveInstanceState">
     override fun onSaveInstanceState(outState: Bundle) {
        super.onSaveInstanceState(outState)
-        outState.putSerializable("HISTORY", mHistory.toTypedArray())
+        outState.putSerializable("HISTORY", mHistory)
      }
 
-    fun btnAddDie(view: View) {
-        val imageView = ImageView(this)
-        imageView.layoutParams = layoutDices.layoutParams
-        var resId = R.drawable.hex
-        imageView.setImageResource(resId)
-        when (doubleCount) {
-            2 -> dis2.addView(imageView)
+    fun showDices(eyes: IntArray) {
+        val layoutDices = findViewById<LinearLayout>(R.id.layoutDices)
+        layoutDices.removeAllViews()
+        for (idx in 0..eyes.size - 1) {
+            val imageView = ImageView(this)
+            imageView.maxWidth = 100
+            imageView.adjustViewBounds = true
+            imageView.scaleType = ImageView.ScaleType.FIT_CENTER
+            val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            lp.setMargins(20, 20, 20, 20)
+            imageView.layoutParams = lp
+            //imageView.layoutParams = layoutDices.layoutParams
+            //imageView.maxWidth = 10
+            imageView.setImageResource(diceId[eyes[idx]])
+            layoutDices.addView(imageView)
         }
     }
 
-    fun btnRemoveDie(view: View) {
-
+    fun onClickRemoveDie(view: View) {
+        dieNo--
+        showDices((1..dieNo).toList().toIntArray())
     }
+
+    fun onClickAddDie(view: View) {
+        dieNo++
+        showDices((1..dieNo).toList().toIntArray())}
 
 }

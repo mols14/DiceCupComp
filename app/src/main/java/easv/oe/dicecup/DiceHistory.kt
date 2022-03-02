@@ -4,20 +4,16 @@ import java.io.Serializable
 import java.util.List
 import kotlin.collections.MutableList
 
-class DiceHistory : Serializable, List<> {
+class DiceHistory : Serializable {
 
-    val mHistory = mutableListOf<String>("0","0","0","0","0","0")
-    private var doubleCount = 0
+    val mHistory = mutableListOf<BERoll>()
 
-    fun addEntry(str: String){
-        mHistory.add(0, str)
+    fun addEntry(aRoll: BERoll){
+        mHistory.add(aRoll)
     }
 
-    fun getList(): MutableList<String> {
+    fun getList(): MutableList<BERoll> {
         return mHistory
     }
-    fun remove() {
-        mHistory.removeAt(0)
-    }
-
 }
+
