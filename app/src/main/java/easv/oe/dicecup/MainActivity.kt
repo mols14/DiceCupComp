@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         layoutDices.removeAllViews()
         for (idx in 0..eyes.size - 1) {
             val imageView = ImageView(this)
-            imageView.maxWidth = 100
+            imageView.maxWidth = 80
             imageView.adjustViewBounds = true
             imageView.scaleType = ImageView.ScaleType.FIT_CENTER
             val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
