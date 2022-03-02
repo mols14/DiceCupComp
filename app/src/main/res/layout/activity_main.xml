@@ -105,6 +105,7 @@
         android:text="History"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:onClick="onClickHistory"
         ></Button>
 
 </RelativeLayout>

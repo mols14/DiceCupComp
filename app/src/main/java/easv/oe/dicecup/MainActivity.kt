@@ -8,8 +8,8 @@ import android.widget.ImageView
 import android.widget.Toast
 import java.util.*
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 
@@ -103,5 +103,10 @@ class MainActivity : AppCompatActivity() {
     fun onClickAddDie(view: View) {
         dieNo++
         showDices((1..dieNo).toList().toIntArray())}
+
+    fun onClickHistory(view: View) {
+        val intent = Intent(this, HistoryActivity::class.java)
+        startActivity(intent)
+    }
 
 }
