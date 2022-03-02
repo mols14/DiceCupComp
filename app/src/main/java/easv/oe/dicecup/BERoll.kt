@@ -3,6 +3,7 @@ package easv.oe.dicecup
 import java.util.*
 
 class BERoll(
+    val index: Int,
     val time: Date,
     val eyes: IntArray) {
     override fun toString(): String {
@@ -10,6 +11,6 @@ class BERoll(
         for (eye in eyes) {
             e.add("$eye ")
         }
-        return "${time.hours}:${time.minutes}. ${e}\n\n"
+        return "$index: ${time.hours}:${time.minutes}. ${e}\n\n"
     }
 }

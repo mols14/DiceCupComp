@@ -15,7 +15,8 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
-    var dieNo = 2;
+    var round = 0
+    var dieNo = 2
 
     val mHistory = HistoryActivity()
 
@@ -54,12 +55,13 @@ class MainActivity : AppCompatActivity() {
     }
 
      fun onClickRoll(v: View){
+         round++
         val p = mutableListOf<Int>()
         for (i in 1..dieNo){
             val eDice = mRandomGenerator.nextInt(6)+1
             p.add(eDice)
         }
-        val aRoll = BERoll(Date(), p.toIntArray())
+        val aRoll = BERoll(round, Date(), p.toIntArray())
         mHistory.addEntry(aRoll)
         showDices(p.toIntArray())
         Log.d(TAG, "Roll")
@@ -91,11 +93,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickRemoveDie(view: View) {
+        if (dieNo == 1) return
         dieNo--
         showDices((1..dieNo).toList().toIntArray())
     }
 
     fun onClickAddDie(view: View) {
+        if (dieNo == 6) return
         dieNo++
         showDices((1..dieNo).toList().toIntArray())}
 
