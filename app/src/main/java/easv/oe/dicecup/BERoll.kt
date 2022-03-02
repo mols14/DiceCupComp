@@ -6,6 +6,10 @@ class BERoll(
     val time: Date,
     val eyes: IntArray) {
     override fun toString(): String {
-        return "${time.hours}:${time.minutes}. ${eyes[0]} - ${eyes[1]}\n"
+        var e = mutableListOf<String>()
+        for (eye in eyes) {
+            e.add("$eye ")
+        }
+        return "${time.hours}:${time.minutes}. ${e}\n\n"
     }
 }

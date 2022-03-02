@@ -28,5 +28,9 @@ class HistoryActivity : AppCompatActivity(){
         return mHistory.toString()
     }
 
+    fun onClickClear(view: View) {
+        textView.text =""
+    }
+
 
 }

@@ -103,6 +103,5 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, mHistory::class.java)
         intent.putExtra("HISTORY", mHistory.getHistory())
         startActivity(intent)
-
     }
 }
