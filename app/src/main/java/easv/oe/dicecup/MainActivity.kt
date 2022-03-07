@@ -18,8 +18,6 @@ class MainActivity : AppCompatActivity() {
     var round = 0
     var dieNo = 2
 
-    val mHistory = HistoryActivity()
-
     // mapping from 1..6 to drawables, the first index is unused
     private val diceId = intArrayOf(0, R.drawable.dice1,
                                R.drawable.dice2,
@@ -62,14 +60,12 @@ class MainActivity : AppCompatActivity() {
             p.add(eDice)
         }
         val aRoll = BERoll(round, Date(), p.toIntArray())
-        mHistory.addEntry(aRoll)
+        History.addEntry(aRoll)
         showDices(p.toIntArray())
         Log.d(TAG, "Roll")
          val tvHistory = findViewById<TextView>(R.id.tvHistory)
          tvHistory.text = p.toString()
     }
-
-
 
     //override fun onSaveInstanceState(outState: Bundle) {
     //   super.onSaveInstanceState(outState)
@@ -104,8 +100,7 @@ class MainActivity : AppCompatActivity() {
         showDices((1..dieNo).toList().toIntArray())}
 
     fun onClickHistory(view: View) {
-        val intent = Intent(this, mHistory::class.java)
-        intent.putExtra("HISTORY", mHistory.getHistory())
+        val intent = Intent(this, HistoryActivity::class.java)
         startActivity(intent)
     }
 }

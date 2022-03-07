@@ -14,27 +14,17 @@ class HistoryActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
-        val history = intent.getStringExtra("HISTORY")
         textView = findViewById(R.id.tvHistoryDisplay)
-        textView.text = history.toString()
-    }
-
-    private var mHistory = mutableListOf<BERoll>()
-
-    fun addEntry(aRoll: BERoll){
-        mHistory.add(aRoll)
-    }
-
-    fun getHistory(): String {
-        return mHistory.toString()
+        textView.text = History.getHistory()
     }
 
     fun onClickClear(view: View) {
-        textView.text =""
+        History.clear()
+        textView = findViewById(R.id.tvHistoryDisplay)
+        textView.text = History.getHistory()
     }
 
     fun onClickBack(view: View) {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        finish()
     }
 }
